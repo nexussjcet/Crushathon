@@ -18,7 +18,6 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 - Once you are done, create a pull request.
 
 
-
 ### Developer Profile
 
 - Enter your full name
@@ -27,6 +26,8 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 - Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
 - Contact details: Email ID
 
----
+--- 
+> Note:
+> This event has no prize pool. The best 3 projects will receive appreciation certificates, and all participants will receive a participation certificate.  
+> If you have any doubts, feel free to contact [Pranav Sojan](https://wa.me/918113015528).
 
-> Note: This event has no prize pool. The best 3 projects will receive appreciation certificates, and all participants will receive a participation certificate.
