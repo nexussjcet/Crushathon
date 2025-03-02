@@ -6,17 +6,23 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 
 ## How to Participate
 ### Step 1
-- Fork [this repository](https://github.com/nexussjcet/Crushathon/fork) to your GitHub account.
+- [Fork this repository](https://github.com/nexussjcet/Crushathon/fork) to your GitHub account.
 
 ### Step 2
 - Develop an AI chatbot that can simulate conversations.
 - Enhance it with creative and innovative features of your choice.
 - Showcase your chatbot’s functionality and intelligence.
+- Describe the working of your AI partner in _How to use_ placeholder in `README.md`.
 
 ### Step 3
-- Complete your profile in the Developer profile placeholder in `README.md` to get certificates.
+- Complete your profile in the _Developer profile_ placeholder in `README.md` to get certificates.
 - Once you are done, create a pull request.
 
+
+### How to Use
+- If you are building a website, host it and describe how it works.
+- If you are creating a Command Line Application, describe its functionality.
+- If other, explain that too.
 
 ### Developer Profile
 
