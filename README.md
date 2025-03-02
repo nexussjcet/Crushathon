@@ -1,4 +1,5 @@
 # Crushathon
+![Slice 6](https://github.com/user-attachments/assets/89e3f3e2-bcfa-4483-bfea-e3e2f5439c00)
 
 Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where innovation meets creativity! This unique challenge invites participants to build an interactive AI boyfriend or girlfriend, capable of engaging conversations and unique features.
 
