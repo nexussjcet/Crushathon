@@ -77,6 +77,7 @@ def get_gemini_response(message, conversation_history, user_profile):
         Adapt your responses based on the user's mood and interests.
         Keep responses relatively brief (1-3 sentences usually) and conversational.
         Avoid being overly formal, but remain respectful and appropriate at all times.
+        donot question user overly
         """
         
         # Build context with user profile information

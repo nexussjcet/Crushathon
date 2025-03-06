@@ -3,6 +3,104 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const resetBtn = document.getElementById('reset-btn');
+    const chatContainer = document.querySelector('.chat-container');
+
+    // Create rose petals
+    function createRosePetals() {
+        const totalPetals = 15;
+        const viewport = document.querySelector('.chat-container');
+        
+        // Clear existing petals
+        document.querySelectorAll('.rose-petal').forEach(petal => petal.remove());
+        
+        for (let i = 0; i < totalPetals; i++) {
+            setTimeout(() => {
+                const petal = document.createElement('div');
+                petal.classList.add('rose-petal');
+                
+                // Randomly select one of three petal designs
+                const petalType = Math.floor(Math.random() * 3) + 1;
+                petal.classList.add(`petal-${petalType}`);
+                
+                // Random size between 20px and 40px
+                const size = 20 + Math.random() * 20;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                
+                // Random horizontal position
+                const startPosX = Math.random() * 100;
+                petal.style.left = `${startPosX}%`;
+                
+                // Random horizontal shift during fall
+                const translateX = -50 + Math.random() * 100;
+                petal.style.setProperty('--tx', `${translateX}px`);
+                
+                // Random rotation during fall
+                const rotation = 360 + Math.random() * 360;
+                petal.style.setProperty('--rt', `${rotation}deg`);
+                
+                // Random sway parameters
+                petal.style.setProperty('--sway-x', `${10 + Math.random() * 20}px`);
+                petal.style.setProperty('--sway-r', `${15 + Math.random() * 15}deg`);
+                
+                // Set animation properties
+                const fallDuration = 8 + Math.random() * 10;
+                const swayDuration = 2 + Math.random() * 4;
+                
+                petal.style.animation = `
+                    fallingRotating ${fallDuration}s linear forwards,
+                    sway ${swayDuration}s ease-in-out infinite alternate
+                `;
+                
+                viewport.appendChild(petal);
+                
+                // Remove petal after animation completes
+                setTimeout(() => {
+                    petal.remove();
+                }, fallDuration * 1000);
+                
+            }, i * 1000);
+        }
+    }
+    
+    // Create rose petals initially and then periodically
+    createRosePetals();
+    setInterval(createRosePetals, 15000);
+
+    // Create floating hearts
+    function createFloatingHearts() {
+        const heartsCount = 10;
+        
+        for (let i = 0; i < heartsCount; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random position
+                heart.style.left = Math.random() * 100 + '%';
+                
+                // Random animation duration
+                const duration = 5 + Math.random() * 10;
+                heart.style.animationDuration = `${duration}s`;
+                
+                // Random size
+                const size = 10 + Math.random() * 20;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                
+                chatContainer.appendChild(heart);
+                
+                // Remove heart after animation completes
+                setTimeout(() => {
+                    heart.remove();
+                }, duration * 1000);
+            }, i * 800);
+        }
+    }
+    
+    // Create hearts initially and then every 10 seconds
+    createFloatingHearts();
+    setInterval(createFloatingHearts, 10000);
 
     // Function to add a message to the chat
     function addMessage(content, isUser) {
