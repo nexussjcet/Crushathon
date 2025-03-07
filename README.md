@@ -1,40 +1,64 @@
-# Crushathon
-![Slice 6](https://github.com/user-attachments/assets/89e3f3e2-bcfa-4483-bfea-e3e2f5439c00)
+# AI Companion for Crushathon
 
-Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where innovation meets creativity! This unique challenge invites participants to build an interactive AI boyfriend or girlfriend, capable of engaging conversations and unique features.
+This project is an **interactive AI chatbot** built for the Crushathon challenge at Asthra 2025. It simulates an AI "girlfriend/boyfriend" capable of engaging conversations, complete with customizable personality traits and user profiles.
 
-> Deadline for Submission: March 7, 2025
+## How to Use
 
-## How to Participate
-### Step 1
-- [Fork this repository](https://github.com/nexussjcet/Crushathon/fork) to your GitHub account.
+1. **Visit the Live Website**
+   * [AI Companion on Render](https://companion-ai-8c2v.onrender.com) <!-- Replace with your actual deployed link -->
+   * Follow the on-screen steps to set up your AI companion.
 
-### Step 2
-- Develop an AI chatbot that can simulate conversations.
-- Enhance it with creative and innovative features of your choice.
-- Showcase your chatbot’s functionality and intelligence.
-- Describe the working of your AI partner in _How to use_ placeholder in `README.md`.
+2. **Provide Your Gemini API Key**
+   * On the first page, enter your Gemini API key (from Google AI Studio).
+   * This key is needed to power the AI conversations.
 
-### Step 3
-- Complete your profile in the _Developer profile_ placeholder in `README.md` to get certificates.
-- Once you are done, create a pull request.
+3. **Customize Your Companion**
+   * Give your AI companion a name and personality traits.
+   * An image will be generated based on your description (it may take a few moments).
 
+4. **Enter Your Profile**
+   * Tell the companion your name and a bit about yourself so it can tailor its responses.
 
-### How to Use
-- If you are building a website, host it and describe how it works.
-- If you are creating a Command Line Application, describe its functionality.
-- If other, explain that too.
+5. **Start Chatting!**
+   * Once set up, you can chat with your AI companion in real time.
 
-### Developer Profile
+## Optional: Running Locally
 
-- Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/<YourUserName>/<YourRepoName>.git
+   ```
 
---- 
-> Note:
-> This event has no prize pool. The best 3 projects will receive appreciation certificates, and all participants will receive a participation certificate.  
-> If you have any doubts, feel free to contact [Pranav Sojan](https://wa.me/918113015528).
+2. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
+3. **Run the App**
+   ```bash
+   gunicorn app:app --bind 0.0.0.0:5000
+   ```
+   or, for basic testing:
+   ```bash
+   python app.py
+   ```
+
+4. **Open in Your Browser**
+   Go to `http://127.0.0.1:5000` and follow the same setup steps as above.
+
+## Developer Profile
+
+**Full Name:** Devanath D R
+
+**Current Education/Profession:** B.Tech, 3rd Year - Computer Science Student
+
+**College:** College of Engineering Karunagappally
+**Profiles:**
+* [LinkedIn](https://www.linkedin.com/in/devanath-dr-0a9996262/) <!-- Replace with your actual LinkedIn URL -->
+* Mulearn: devanath.d.r@mulearn
+
+**Contact:** devanathskt@gmail.com
+
+---
+
+Enjoy chatting with your new AI companion, and thank you for exploring this project!

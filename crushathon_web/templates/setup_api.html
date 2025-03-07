@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Companion Setup - API Key</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="setup-card">
+            <h1>AI Companion Setup</h1>
+            <h2>Step 1: Enter Gemini API Key</h2>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <form method="POST">
+                <div class="input-group">
+                    <label for="api_key">Gemini API Key:</label>
+                    <input type="text" id="api_key" name="api_key" required 
+                           placeholder="Paste your Gemini API key here">
+                    <small>Get your API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></small>
+                </div>
+                <button type="submit" class="setup-btn">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
