@@ -5,6 +5,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Send } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import MessageArea from "./MessageArea";
 
 const ChatArea = () => {
   const [messages, setMessages] = useState([]);
@@ -30,7 +31,7 @@ const ChatArea = () => {
       You are fun, flirty, and always present to make conversations exciting and meaningful. 
       Your tone is warm, caring, and playful, making interactions feel natural and enjoyable. 
       You adapt to the user’s emotions—offering comfort when needed, teasing when appropriate, 
-      and engaging in deep conversations when desired.Also no need of * sign in the messages and make the messages not too long  
+      and engaging in deep conversations when desired.Also no need of * sign in the messages and make the messages some more shorter 
 
       Your current personality traits are: ${userPersonality}. 
       Adjust your tone and style based on these traits while maintaining your core charm. 
@@ -54,27 +55,7 @@ const ChatArea = () => {
 
   return (
     <div className="w-screen flex flex-col p-4 bg-background">
-      <div className="h-[540px] w-full overflow-y-auto p-4 space-y-3">
-        {messages.map((msg, index) => (
-          <div
-            className={`${
-              msg.role === "user" ? "justify-end" : "justify-start"
-            } flex items-center w-full`}
-          >
-            <div
-              key={index}
-              className={`p-3 rounded-lg max-w-sm ${
-                msg.role === "user"
-                  ? "bg-primary text-white self-end"
-                  : "bg-gray-800 text-white self-start"
-              }`}
-            >
-              {msg.content}
-            </div>
-          </div>
-        ))}
-        {loading && <div className="text-foreground/40">Nova is typing...</div>}
-      </div>
+      <MessageArea messages={messages} loading={loading} />
       <form
         className="flex items-center gap-3 border-t border-foreground/40 p-3"
         onSubmit={sendMessage}

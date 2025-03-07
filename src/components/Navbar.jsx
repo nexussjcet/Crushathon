@@ -15,7 +15,7 @@ const Navbar = () => {
                 size="icon"
                 className="text-foreground  hover:bg-foreground/20 hover:cursor-pointer"
               >
-                <ArrowLeft className="h-5 w-5" />
+                <ArrowLeft size={30} />
               </Button>
             </Link>
             <div className="flex items-center gap-2">
@@ -32,7 +32,7 @@ const Navbar = () => {
             size="icon"
             className="text-foreground hover:bg-foreground/20 hover:cursor-pointer"
           >
-            <Settings className="h-7 w-7" />
+            <Settings size={30} />
           </Button>
         </div>
       </header>
