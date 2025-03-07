@@ -1,40 +1,51 @@
-# Crushathon
-![Slice 6](https://github.com/user-attachments/assets/89e3f3e2-bcfa-4483-bfea-e3e2f5439c00)
+HI,
+i am Abhishek B, Student of providence college of engineering ,chengannur
+i am studying computer science engineering with AI
 
-Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where innovation meets creativity! This unique challenge invites participants to build an interactive AI boyfriend or girlfriend, capable of engaging conversations and unique features.
-
-> Deadline for Submission: March 7, 2025
-
-## How to Participate
-### Step 1
-- [Fork this repository](https://github.com/nexussjcet/Crushathon/fork) to your GitHub account.
-
-### Step 2
-- Develop an AI chatbot that can simulate conversations.
-- Enhance it with creative and innovative features of your choice.
-- Showcase your chatbot’s functionality and intelligence.
-- Describe the working of your AI partner in _How to use_ placeholder in `README.md`.
-
-### Step 3
-- Complete your profile in the _Developer profile_ placeholder in `README.md` to get certificates.
-- Once you are done, create a pull request.
+my chat bot
 
 
-### How to Use
-- If you are building a website, host it and describe how it works.
-- If you are creating a Command Line Application, describe its functionality.
-- If other, explain that too.
+AI Girlfriend Chatbot Using Local AI Models in Ollama
+1. Introduction
+The AI Girlfriend Chatbot is an interactive, AI-powered chatbot designed to simulate conversations in a friendly and engaging manner. Unlike cloud-based AI chatbots, this project runs completely locally using Ollama, ensuring privacy and fast responses. The chatbot features a love-themed interface with a pink color scheme and heart symbols, creating a visually appealing and engaging user experience.
 
-### Developer Profile
+The chatbot is built using:
 
-- Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
+Flask (Python) for backend processing
+Ollama for generating AI responses locally
+HTML, CSS, and JavaScript for the frontend
+This chatbot is a fun and customizable AI companion, ideal for users looking for a personalized AI chat experience.
 
---- 
-> Note:
-> This event has no prize pool. The best 3 projects will receive appreciation certificates, and all participants will receive a participation certificate.  
-> If you have any doubts, feel free to contact [Pranav Sojan](https://wa.me/918113015528).
+2. Objectives
+The main objectives of this project are:
 
+To develop an AI chatbot that provides engaging and human-like conversations.
+To use local AI models for enhanced privacy and efficiency.
+To create an attractive user interface with a pink theme and love symbols.
+To enable real-time message exchange between users and the chatbot.
+To implement an AI model that processes natural language and generates meaningful replies.
+3. System Architecture
+The chatbot is developed using a client-server architecture, where the frontend interacts with the backend through HTTP requests.
+
+Components:
+Frontend (User Interface):
+
+Built with HTML, CSS, and JavaScript
+Provides an aesthetically pleasing pink-themed chat window
+Uses JavaScript to send and receive messages asynchronously
+Backend (Flask Server):
+
+Runs on Python Flask
+Listens for user messages and forwards them to the AI model
+Processes responses and sends them back to the frontend
+AI Model (Ollama):
+
+Runs locally, ensuring privacy and no dependency on external servers
+Processes user input using pre-trained language models
+Generates context-aware, human-like responses
+Communication Flow:
+
+The user types a message in the chat window.
+The JavaScript frontend sends the message to the Flask backend.
+The Flask backend processes the input and sends it to the Ollama AI model.
+The model generates a reply, which is returned to the frontend and displayed to the user.
