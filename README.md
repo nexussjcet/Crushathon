@@ -34,7 +34,7 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 
 ## How it Works
 
-**[Click here to try Nova](https://your-hosted-link.com)**
+**[Click here to try Nova](https://nova-crushathon.vercel.app/)**
 
 ## 📦 Installation & Running Locally
 To run Nova on your local machine, follow these steps:
