@@ -4,120 +4,213 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with {{ bot_name }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="robot.jpg" type="image/x-icon">
     <style>
         :root {
-            --ig-primary: #ff66b2;
-            --ig-light: #ffb3d9;
-            --ig-background: #fafafa;
-            --ig-border: #dbdbdb;
-            --ig-text: #262626;
-            --ig-secondary-text: #8e8e8e;
+            --primary: #ff66b2;
+            --primary-light: #ffb3d9;
+            --primary-lighter: #fff0f7;
+            --primary-dark: #ff3399;
+            --text: #262626;
+            --text-light: #8e8e8e;
+            --text-lighter: #c7c7c7;
+            --bg: #ffffff;
+            --bg-light: #fafafa;
+            --border: #efefef;
+            --shadow: rgba(255, 102, 178, 0.15);
+            --shadow-dark: rgba(0, 0, 0, 0.06);
+            --success: #42d392;
+            --danger: #ff4757;
         }
-        
+       
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+       
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: white;
-            color: var(--ig-text);
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
-        
+       
         /* Header Styles */
         .header {
             display: flex;
             align-items: center;
-            padding: 10px 16px;
-            border-bottom: 1px solid var(--ig-border);
-            background-color: white;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            background-color: var(--bg);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 15px var(--shadow-dark);
+        }
+       
+        .back-button {
+            margin-right: 16px;
+            font-size: 24px;
+            color: var(--primary);
+            text-decoration: none;
+            height: 36px;
+            width: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
         
-        .back-button {
+        .back-button:hover {
+            background-color: var(--primary-lighter);
+            transform: translateX(-3px);
+        }
+       
+        .profile-pic-container {
+            position: relative;
             margin-right: 14px;
-            font-size: 24px;
-            color: var(--ig-text);
-            text-decoration: none;
         }
         
         .profile-pic {
-            width: 32px;
-            height: 32px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 12px;
+            border: 2px solid var(--primary-light);
+            box-shadow: 0 3px 10px var(--shadow);
+            transition: transform 0.3s ease;
         }
         
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+        
+        .status-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--success);
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+        }
+       
         .header-info {
             flex: 1;
         }
-        
+       
         .header-name {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 16px;
             margin-bottom: 2px;
+            color: var(--primary-dark);
         }
-        
+       
         .header-status {
-            font-size: 12px;
-            color: var(--ig-secondary-text);
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
         }
-        
+       
         .header-actions {
             display: flex;
             gap: 16px;
         }
-        
+       
         .header-icon {
-            font-size: 24px;
-            color: var(--ig-text);
+            font-size: 22px;
+            color: var(--primary);
+            cursor: pointer;
+            height: 38px;
+            width: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
         
+        .header-icon:hover {
+            background-color: var(--primary-lighter);
+            transform: rotate(90deg);
+        }
+       
         /* Chat Container */
         .chat-container {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background-color: white;
+            background-color: var(--bg);
             overflow: hidden;
+            position: relative;
         }
         
+        /* Background Pattern */
+        .chat-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 85% 15%, rgba(255, 179, 217, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 15% 85%, rgba(255, 179, 217, 0.1) 0%, transparent 25%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+       
         /* Messages Area */
         .messages-container {
             flex: 1;
             overflow-y: auto;
-            padding: 12px 16px;
-            background-color: var(--ig-background);
+            padding: 16px 18px;
+            background-color: var(--bg-light);
             display: flex;
             flex-direction: column;
+            position: relative;
+            scroll-behavior: smooth;
         }
         
+        .messages-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .messages-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .messages-container::-webkit-scrollbar-thumb {
+            background-color: var(--primary-light);
+            border-radius: 10px;
+        }
+       
         /* Date Divider */
         .date-divider {
             text-align: center;
-            margin: 16px 0;
+            margin: 20px 0;
             position: relative;
         }
-        
+       
         .date-divider span {
-            background-color: var(--ig-background);
-            padding: 0 10px;
+            background-color: var(--bg-light);
+            padding: 0 14px;
             font-size: 12px;
-            color: var(--ig-secondary-text);
+            font-weight: 600;
+            color: var(--text-light);
             position: relative;
             z-index: 1;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--shadow-dark);
+            padding: 6px 14px;
         }
-        
+       
         .date-divider::before {
             content: '';
             position: absolute;
@@ -125,220 +218,364 @@
             right: 0;
             top: 50%;
             height: 1px;
-            background-color: var(--ig-border);
+            background-color: var(--border);
             z-index: 0;
         }
-        
+       
         /* Message Styles */
         .message {
-            max-width: 70%;
-            margin-bottom: 8px;
-            padding: 8px 16px;
-            border-radius: 22px;
-            font-size: 14px;
-            line-height: 1.4;
+            max-width: 75%;
+            margin-bottom: 12px;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.5;
             position: relative;
             word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 2px 8px var(--shadow-dark);
+            font-weight: 500;
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+       
         .user-message {
             align-self: flex-end;
-            background-color: var(--ig-primary);
+            background-color: var(--primary);
             color: white;
-            border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 6px;
         }
         
+        .user-message::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -8px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary);
+            border-bottom-left-radius: 16px;
+            z-index: -1;
+        }
+       
         .bot-message {
             align-self: flex-start;
-            background-color: #f1f1f1;
-            border-bottom-left-radius: 4px;
+            background-color: white;
+            border-bottom-left-radius: 6px;
+            color: var(--text);
+            border: 1px solid var(--border);
         }
         
+        .bot-message::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -8px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border-bottom-right-radius: 16px;
+            border-left: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            z-index: -1;
+        }
+       
         .message-time {
-            font-size: 10px;
-            margin-top: 4px;
-            opacity: 0.8;
+            font-size: 11px;
+            margin-top: 5px;
+            opacity: 0.85;
+            font-weight: 500;
+            text-align: right;
         }
-        
+       
         /* Typing Indicator */
         .typing-indicator {
             display: none;
             align-self: flex-start;
-            background-color: #f1f1f1;
-            padding: 12px 16px;
-            border-radius: 22px;
-            border-bottom-left-radius: 4px;
-            margin-bottom: 8px;
+            background-color: white;
+            padding: 12px 20px;
+            border-radius: 18px;
+            border-bottom-left-radius: 6px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px var(--shadow-dark);
+            border: 1px solid var(--border);
+            position: relative;
         }
         
+        .typing-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -8px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border-bottom-right-radius: 16px;
+            border-left: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            z-index: -1;
+        }
+       
         .typing-dots {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
         }
-        
+       
         .typing-dot {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background-color: #999;
+            background-color: var(--primary-light);
             animation: typingAnimation 1.4s infinite ease-in-out;
         }
-        
+       
         .typing-dot:nth-child(1) { animation-delay: 0s; }
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-        
+       
         @keyframes typingAnimation {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-4px); }
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-6px); opacity: 1; }
         }
-        
+       
         /* Input Area */
         .input-area {
-            padding: 10px 16px;
-            background-color: white;
-            border-top: 1px solid var(--ig-border);
+            padding: 14px 18px;
+            background-color: var(--bg);
+            border-top: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            box-shadow: 0 -2px 15px var(--shadow-dark);
+            position: relative;
+            z-index: 10;
         }
-        
+       
         .emoji-button {
-            color: var(--ig-secondary-text);
+            color: var(--primary);
             font-size: 24px;
             display: flex;
             align-items: center;
+            justify-content: center;
             background: none;
             border: none;
             cursor: pointer;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
         
+        .emoji-button:hover {
+            background-color: var(--primary-lighter);
+            transform: scale(1.1);
+        }
+       
         .input-wrapper {
             flex: 1;
-            background-color: var(--ig-background);
-            border-radius: 22px;
-            padding: 0 12px;
+            background-color: var(--bg-light);
+            border-radius: 24px;
+            padding: 0 16px;
             display: flex;
             align-items: center;
-            border: 1px solid var(--ig-border);
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
         }
         
+        .input-wrapper:focus-within {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px var(--shadow);
+        }
+       
         .message-input {
             flex: 1;
             border: none;
             outline: none;
             background: transparent;
-            padding: 10px 0;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
+            padding: 12px 0;
+            font-size: 15px;
+            font-family: 'Quicksand', sans-serif;
             min-height: 20px;
-            max-height: 80px;
+            max-height: 120px;
             resize: none;
+            font-weight: 500;
+            color: var(--text);
         }
         
+        .message-input::placeholder {
+            color: var(--text-lighter);
+            font-weight: 500;
+        }
+       
         .send-button {
             background: none;
             border: none;
-            color: var(--ig-primary);
-            font-weight: 600;
-            font-size: 14px;
-            padding: 0 4px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 15px;
+            padding: 0 8px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
         }
         
+        .send-button:hover:not(:disabled) {
+            transform: scale(1.1);
+            color: var(--primary-dark);
+        }
+       
         .send-button:disabled {
-            color: var(--ig-secondary-text);
+            color: var(--text-lighter);
             opacity: 0.6;
         }
-        
+       
         /* Menu */
         .menu {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: white;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg);
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
             z-index: 1000;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
-            padding: 20px;
+            transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+            padding: 28px 24px;
         }
-        
+       
         .menu.active {
             transform: translateY(0);
         }
-        
+       
         .menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 999;
             display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(3px);
         }
-        
+       
         .menu-overlay.active {
             display: block;
+            opacity: 1;
         }
-        
+       
         .menu-header {
             text-align: center;
-            padding-bottom: 20px;
+            padding-bottom: 24px;
             position: relative;
         }
-        
+       
         .menu-title {
-            font-weight: 600;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-dark);
         }
-        
+       
         .menu-handle {
-            width: 40px;
-            height: 4px;
-            background-color: var(--ig-border);
-            border-radius: 2px;
+            width: 50px;
+            height: 5px;
+            background-color: var(--primary-light);
+            border-radius: 4px;
             position: absolute;
-            top: -10px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
         }
-        
+       
         .menu-option {
-            padding: 14px 0;
+            padding: 16px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid var(--ig-border);
+            border-radius: 14px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
         }
         
-        .menu-option:last-child {
-            border-bottom: none;
+        .menu-option:hover {
+            background-color: var(--primary-lighter);
+            transform: translateY(-2px);
         }
-        
+       
         .menu-icon {
-            margin-right: 12px;
+            margin-right: 16px;
             font-size: 24px;
-            color: var(--ig-text);
+            color: var(--primary);
+            width: 32px;
+            text-align: center;
         }
-        
+       
         .menu-text {
             font-size: 16px;
+            font-weight: 600;
+        }
+       
+        .menu-danger {
+            color: var(--danger);
         }
         
-        .menu-danger {
-            color: #ed4956;
+        .menu-danger .menu-icon {
+            color: var(--danger);
+        }
+        
+        /* Cute elements */
+        .hearts-container {
+            position: absolute;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: var(--primary-light);
+            opacity: 0;
+            transform: translateY(0) rotate(0deg);
+            animation: floatHeart 10s linear infinite;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(100%) rotate(0deg);
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100%) rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <a href="{{ url_for('customize') }}" class="back-button">←</a>
-        <img class="profile-pic" src="{{ bot_dp }}" alt="{{ bot_name }}">
+        <div class="profile-pic-container">
+            <img class="profile-pic" src="{{ bot_dp }}" alt="{{ bot_name }}">
+            <div class="status-dot"></div>
+        </div>
         <div class="header-info">
             <div class="header-name">{{ bot_name }}</div>
             <div class="header-status">{{ bot_traits }}</div>
@@ -347,13 +584,16 @@
             <div class="header-icon" onclick="toggleMenu()">⋮</div>
         </div>
     </div>
-    
+   
     <div class="chat-container">
+        <div class="chat-background"></div>
+        <div class="hearts-container" id="heartsContainer"></div>
+        
         <div class="messages-container" id="messagesContainer">
             <div class="date-divider">
                 <span>Today</span>
             </div>
-            
+           
             {% if chat_history|length == 0 %}
                 <div class="message bot-message">
                     Hey there! I'm {{ bot_name }}. What's on your mind? 😊
@@ -371,7 +611,7 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            
+           
             <div class="typing-indicator" id="typingIndicator">
                 <div class="typing-dots">
                     <div class="typing-dot"></div>
@@ -380,14 +620,14 @@
                 </div>
             </div>
         </div>
-        
+       
         <div class="input-area">
-            <button class="emoji-button">😊</button>
+            <button class="emoji-button" id="emojiButton">😊</button>
             <div class="input-wrapper">
-                <textarea 
-                    class="message-input" 
-                    id="messageInput" 
-                    placeholder="Message..." 
+                <textarea
+                    class="message-input"
+                    id="messageInput"
+                    placeholder="Message..."
                     rows="1"
                     oninput="resizeTextarea(this)"
                 ></textarea>
@@ -395,7 +635,7 @@
             <button class="send-button" id="sendButton" onclick="sendMessage()">Send</button>
         </div>
     </div>
-    
+   
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
     <div class="menu" id="menu">
         <div class="menu-header">
@@ -415,40 +655,89 @@
             <div class="menu-text">Cancel</div>
         </div>
     </div>
-    
+   
     <script>
         // Get current formatted time
         function getCurrentTime() {
             return "Just now";
         }
-        
+       
         // Resize textarea as user types
         function resizeTextarea(textarea) {
             textarea.style.height = '20px';
             textarea.style.height = (textarea.scrollHeight) + 'px';
-            
+           
             // Enable/disable send button based on content
             document.getElementById('sendButton').disabled = textarea.value.trim() === '';
         }
-        
+       
         // Toggle menu visibility
         function toggleMenu() {
             document.getElementById('menu').classList.toggle('active');
             document.getElementById('menuOverlay').classList.toggle('active');
         }
+       
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const maxHearts = 15;
+            
+            for (let i = 0; i < maxHearts; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = (Math.random() * 10) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                heart.style.opacity = Math.random() * 0.3;
+                container.appendChild(heart);
+            }
+        }
         
+        // Trigger hearts when emoji button is clicked
+        function triggerHeartAnimation() {
+            const messagesContainer = document.getElementById('messagesContainer');
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.style.position = 'absolute';
+            heart.style.fontSize = '24px';
+            heart.style.color = 'var(--primary)';
+            heart.style.left = '50%';
+            heart.style.bottom = '100px';
+            heart.style.transform = 'translateX(-50%)';
+            heart.style.animation = 'floatUp 2s ease-out forwards';
+            
+            messagesContainer.appendChild(heart);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+        
+        // Define float up animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+                20% { opacity: 1; }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-100px); }
+            }
+        `;
+        document.head.appendChild(style);
+       
         // Send message function
         function sendMessage() {
             const messageInput = document.getElementById('messageInput');
             const userMessage = messageInput.value.trim();
-            
+           
             if (!userMessage) return;
-            
+           
             // Reset textarea
             messageInput.value = '';
             messageInput.style.height = '20px';
             document.getElementById('sendButton').disabled = true;
-            
+           
             // Add user message to chat
             const messagesContainer = document.getElementById('messagesContainer');
             const userMessageElement = document.createElement('div');
@@ -458,14 +747,14 @@
                 <div class="message-time">${getCurrentTime()}</div>
             `;
             messagesContainer.appendChild(userMessageElement);
-            
+           
             // Show typing indicator
             const typingIndicator = document.getElementById('typingIndicator');
             typingIndicator.style.display = 'flex';
-            
+           
             // Scroll to bottom
             scrollToBottom();
-            
+           
             // Send to server
             fetch("{{ url_for('send_message') }}", {
                 method: "POST",
@@ -478,7 +767,7 @@
             .then(data => {
                 // Hide typing indicator
                 typingIndicator.style.display = 'none';
-                
+               
                 // Add bot response
                 const botMessageElement = document.createElement('div');
                 botMessageElement.className = 'message bot-message';
@@ -487,15 +776,15 @@
                     <div class="message-time">${getCurrentTime()}</div>
                 `;
                 messagesContainer.appendChild(botMessageElement);
-                
+               
                 scrollToBottom();
             })
             .catch(error => {
                 console.error('Error:', error);
-                
+               
                 // Hide typing indicator
                 typingIndicator.style.display = 'none';
-                
+               
                 // Show error message
                 const errorMessageElement = document.createElement('div');
                 errorMessageElement.className = 'message bot-message';
@@ -504,22 +793,22 @@
                     <div class="message-time">${getCurrentTime()}</div>
                 `;
                 messagesContainer.appendChild(errorMessageElement);
-                
+               
                 scrollToBottom();
             });
         }
-        
+       
         // Scroll to bottom of messages
         function scrollToBottom() {
             const messagesContainer = document.getElementById('messagesContainer');
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
-        
+       
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             // Set initial button state
             document.getElementById('sendButton').disabled = true;
-            
+           
             // Enable Enter key to send
             document.getElementById('messageInput').addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
@@ -530,6 +819,22 @@
                 }
             });
             
+            // Add emoji button functionality
+            document.getElementById('emojiButton').addEventListener('click', () => {
+                triggerHeartAnimation();
+                
+                // Add emoji to input
+                const messageInput = document.getElementById('messageInput');
+                messageInput.value += '❤️';
+                messageInput.focus();
+                
+                // Update send button state
+                document.getElementById('sendButton').disabled = messageInput.value.trim() === '';
+            });
+            
+            // Create floating hearts background
+            createHearts();
+           
             // Initial scroll to bottom
             scrollToBottom();
         });

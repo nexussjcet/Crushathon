@@ -4,85 +4,216 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyCrush Chatbot</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="robot.jpg" type="image/x-icon">
+   <style>
         body {
-            font-family: 'Poppins', Arial, sans-serif;
+            font-family: 'Quicksand', Arial, sans-serif;
             text-align: center;
-            background-color: #ffe6f2;
-            background-image: linear-gradient(135deg, #ffe6f2 0%, #ffd6e7 100%);
+            background-color: #fff0f5;
+            background-image: radial-gradient(circle, #fff0f5 0%, #ffe1ee 100%);
             margin: 0;
             padding: 20px;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow-x: hidden;
         }
         .container {
             width: 90%;
             max-width: 480px;
             margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 102, 178, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(255, 102, 178, 0.2), 
+                        0 5px 15px rgba(0, 0, 0, 0.05);
             animation: fadeIn 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 102, 178, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .container::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 102, 178, 0.1);
+            border-radius: 50%;
+            z-index: -1;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         h2 {
-            color: #ff66b2;
-            margin-bottom: 30px;
-            font-size: 32px;
+            color: #ff4d94;
+            margin-bottom: 25px;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 3px rgba(255, 102, 178, 0.2);
         }
         p {
             color: #666;
             font-size: 18px;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            font-weight: 500;
         }
         .feature-box {
             display: block;
-            background: #ff66b2;
+            background: linear-gradient(135deg, #ff66b2 0%, #ff3399 100%);
             color: white;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 25px 0;
+            border-radius: 50px;
             text-decoration: none;
             font-size: 18px;
             font-weight: 600;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 102, 178, 0.3);
+            box-shadow: 0 6px 20px rgba(255, 102, 178, 0.3);
         }
         .feature-box:hover {
-            background: #ff3399;
+            background: linear-gradient(135deg, #ff3399 0%, #ff1a8c 100%);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 102, 178, 0.4);
+            box-shadow: 0 10px 25px rgba(255, 102, 178, 0.4);
+        }
+        .heart-container {
+            position: relative;
+            height: 120px;
+            margin: 20px 0 30px;
         }
         .heart-icon {
-            display: inline-block;
-            font-size: 100px;
-            margin: 20px 0;
-            color: #ff66b2;
+            font-size: 70px;
+            color: #ff4d94;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             animation: pulse 1.5s infinite;
+            z-index: 2;
+        }
+        .heart-glow {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 102, 178, 0.2);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(15px);
+            animation: glow 3s infinite alternate;
+        }
+        .floating-hearts {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 4s ease-in infinite;
         }
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes glow {
+            0% { opacity: 0.5; width: 80px; height: 80px; }
+            100% { opacity: 0.8; width: 110px; height: 110px; }
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #ff66b2;
+            opacity: 0;
+            animation: sparkle 3s linear infinite;
+        }
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="sparkles" id="sparkles"></div>
         <h2>Welcome to MyCrush</h2>
-        <div class="heart-icon">❤️</div>
+        <div class="heart-container">
+            <div class="heart-glow"></div>
+            <div class="heart-icon">❤️</div>
+        </div>
         <p>Chat with a personalized AI bot that simulates conversations with your crush! Customize their personality, name, and appearance.</p>
         <a href="{{ url_for('customize') }}" class="feature-box">Create Your Crush 💘</a>
     </div>
+
+    <script>
+        // Create floating mini hearts
+        const heartContainer = document.querySelector('.heart-container');
+        const colors = ['❤️', '💖', '💕', '💓', '💗'];
+        
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-hearts');
+            heart.innerHTML = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.left = `${Math.random() * 80 + 10}%`;
+            heart.style.animationDelay = `${Math.random() * 2}s`;
+            heartContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        setInterval(createFloatingHeart, 800);
+        
+        // Create sparkles
+        const sparklesContainer = document.getElementById('sparkles');
+        const sparkleCount = 15;
+        
+        for (let i = 0; i < sparkleCount; i++) {
+            createSparkle();
+        }
+        
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = `${Math.random() * 100}%`;
+            sparkle.style.top = `${Math.random() * 100}%`;
+            sparkle.style.animationDelay = `${Math.random() * 3}s`;
+            sparklesContainer.appendChild(sparkle);
+        }
+    </script>
 </body>
 </html>
