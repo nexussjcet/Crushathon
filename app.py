@@ -130,7 +130,9 @@ def send_message():
         response = model.generate_content(prompt)
         bot_response = response.text.strip()
     except Exception as e:
-        bot_response = f"I'm kinda busy lets chat later "
+        bot_response = "I'm kinda busy, let's chat later."
+
+
    
     # Update chat history
     chat_history.append({"user": user_message, "bot": bot_response})
