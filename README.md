@@ -26,12 +26,10 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 - If other, explain that too.
 
 ### Developer Profile
+ALEENA THOMAS 
+- I am a student at Amal Jyothi College of Engineering, Kanjirapally pursuing Artificial Intellingence and Data Science
+- Contact details: aleenathomas2028@ad.ajce.in
 
-- Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
 
 --- 
 > Note:
