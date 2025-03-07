@@ -1,40 +1,82 @@
-# Crushathon
-![Slice 6](https://github.com/user-attachments/assets/89e3f3e2-bcfa-4483-bfea-e3e2f5439c00)
+import openai
+import speech_recognition as sr
+import pyttsx3
+import json
+import os
 
-Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where innovation meets creativity! This unique challenge invites participants to build an interactive AI boyfriend or girlfriend, capable of engaging conversations and unique features.
+# Set your OpenAI API key
+openai.api_key = "your-api-key-here"
 
-> Deadline for Submission: March 7, 2025
+# Initialize text-to-speech engine
+engine = pyttsx3.init()
+engine.setProperty("rate", 160)  # Adjust speech speed
 
-## How to Participate
-### Step 1
-- [Fork this repository](https://github.com/nexussjcet/Crushathon/fork) to your GitHub account.
+# Load or create chatbot memory
+memory_file = "chat_memory.json"
 
-### Step 2
-- Develop an AI chatbot that can simulate conversations.
-- Enhance it with creative and innovative features of your choice.
-- Showcase your chatbot’s functionality and intelligence.
-- Describe the working of your AI partner in _How to use_ placeholder in `README.md`.
+def load_memory():
+    if os.path.exists(memory_file):
+        with open(memory_file, "r") as file:
+            return json.load(file)
+    return []
 
-### Step 3
-- Complete your profile in the _Developer profile_ placeholder in `README.md` to get certificates.
-- Once you are done, create a pull request.
+def save_memory(messages):
+    with open(memory_file, "w") as file:
+        json.dump(messages, file)
 
+# Function to generate chatbot response
+def chatbot_response(user_input, chat_memory):
+    chat_memory.append({"role": "user", "content": user_input})
+    
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a loving and emotional AI boyfriend."}
+        ] + chat_memory
+    )
+    
+    bot_reply = response["choices"][0]["message"]["content"]
+    chat_memory.append({"role": "assistant", "content": bot_reply})
+    save_memory(chat_memory)  # Save memory after each conversation
+    return bot_reply
 
-### How to Use
-- If you are building a website, host it and describe how it works.
-- If you are creating a Command Line Application, describe its functionality.
-- If other, explain that too.
+# Function for voice recognition
+def recognize_speech():
+    recognizer = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        recognizer.adjust_for_ambient_noise(source)
+        try:
+            audio = recognizer.listen(source, timeout=5)
+            text = recognizer.recognize_google(audio)
+            print(f"You: {text}")
+            return text
+        except sr.UnknownValueError:
+            return "I didn't catch that, love."
+        except sr.RequestError:
+            return "Sorry, I can't process voice right now."
 
-### Developer Profile
+# Function for voice output
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
 
-- Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
+# Main chatbot function
+def chatbot_boyfriend():
+    chat_memory = load_memory()
+    print("Chatbot Boyfriend: Hey babe, I missed you! How are you? ❤️")
+    speak("Hey babe, I missed you! How are you?")
 
---- 
-> Note:
-> This event has no prize pool. The best 3 projects will receive appreciation certificates, and all participants will receive a participation certificate.  
-> If you have any doubts, feel free to contact [Pranav Sojan](https://wa.me/918113015528).
+    while True:
+        user_input = recognize_speech()  # Use voice input
+        if user_input.lower() in ["exit", "bye", "quit"]:
+            print("Chatbot Boyfriend: I'll miss you! Talk soon. 💕")
+            speak("I'll miss you! Talk soon.")
+            break
 
+        bot_reply = chatbot_response(user_input, chat_memory)
+        print(f"Chatbot Boyfriend: {bot_reply}")
+        speak(bot_reply)  # Use voice output
+
+# Run the chatbot
+chatbot_boyfriend()
