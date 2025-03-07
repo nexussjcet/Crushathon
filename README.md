@@ -27,11 +27,9 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 
 ### Developer Profile
 
-- Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
+- Abhijith Shaji
+- I am a student at Amal Jyothi College of Engineering, currently pursuing artificial intelligence.
+- Contact details: abhijithshaji2028@ad.ajce.in
 
 --- 
 > Note:
