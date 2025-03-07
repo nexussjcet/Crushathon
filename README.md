@@ -1,40 +1,31 @@
-# Crushathon
-![Slice 6](https://github.com/user-attachments/assets/89e3f3e2-bcfa-4483-bfea-e3e2f5439c00)
+# MyCrush 💕🤖
 
-Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where innovation meets creativity! This unique challenge invites participants to build an interactive AI boyfriend or girlfriend, capable of engaging conversations and unique features.
+Welcome to **MyCrush**, an AI-powered chatbot that mimics your crush's personality! 🥰 
 
-> Deadline for Submission: March 7, 2025
+## 🚀 Live Demo
+[Click here to chat with MyCrush!](https://mycrush-ag8u.onrender.com/)
 
-## How to Participate
-### Step 1
-- [Fork this repository](https://github.com/nexussjcet/Crushathon/fork) to your GitHub account.
+---
 
-### Step 2
-- Develop an AI chatbot that can simulate conversations.
-- Enhance it with creative and innovative features of your choice.
-- Showcase your chatbot’s functionality and intelligence.
-- Describe the working of your AI partner in _How to use_ placeholder in `README.md`.
+## 📌 Features
+- **Customizable Chatbot** – Upload a DP, set a name, and define personality traits.
+- **Personalized Conversations** – AI-powered chat experience based on selected traits.
+- **Persistent Chat** – Messages stay even after refreshing the page.
+- **Instagram-Inspired UI** – Chat interface similar to an Instagram inbox.
+- **Crush Reset Option** – Easily change or clear your chatbot’s personality.
+- **Mobile-Friendly Design** – Optimized for both desktop and mobile users.
+## 📝 How to Use
+1. **Start Here** – Visit the [Live Site](https://mycrush-ag8u.onrender.com/) 🌐
+2. **Customize Your Crush Bot** – Upload a profile picture, set a name, and choose personality traits.
+3. **Chat Away** – Enjoy fun and engaging conversations with your personalized AI crush!
+4. **Modify Anytime** – Clear the chat and reconfigure your crush bot whenever you like.
 
-### Step 3
-- Complete your profile in the _Developer profile_ placeholder in `README.md` to get certificates.
-- Once you are done, create a pull request.
+---
+
+## 👩‍💻 Developer Profile
+**Full Name:** Hima Rose George  
+**Education:** Third-year CSE student at Saintgits College of Engineering  
+📧 **Contact:** himarg.csa2226@saintgits.org
 
 
-### How to Use
-- If you are building a website, host it and describe how it works.
-- If you are creating a Command Line Application, describe its functionality.
-- If other, explain that too.
-
-### Developer Profile
-
-- Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
-
---- 
-> Note:
-> This event has no prize pool. The best 3 projects will receive appreciation certificates, and all participants will receive a participation certificate.  
-> If you have any doubts, feel free to contact [Pranav Sojan](https://wa.me/918113015528).
-
+---
