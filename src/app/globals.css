@@ -13,5 +13,8 @@
   --color-accent: #8b5cf6; /* #8b5cf6 - Neon Purple */
   --color-muted: #24243e; /* #24243e - Soft Dark Gray */
 }
+body{
+  font-family: 'Arimo';
+}
 
 
