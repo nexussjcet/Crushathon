@@ -23,18 +23,19 @@ Welcome to **MyCrush**, an AI-powered chatbot that mimics your crush's personali
 ---
 ## 🖼️ Screenshots
 ### Welcome Page
-![Welcome Page]
+
 ![image](https://github.com/user-attachments/assets/6586061c-8e49-49d6-90dd-39fdec11f3ae)
 
 
 ### Customization Page
-![Customization Page]
+
 ![image](https://github.com/user-attachments/assets/24dce30c-611d-403d-b2b0-0ae080f30239)
 
 
 ### Chat Interface
-![Chat Interface]
-![image](https://github.com/user-attachments/assets/020db5b9-8b99-41d1-9fdf-3400bc95f3ba)
+
+![image](https://github.com/user-attachments/assets/eb411657-e86c-488b-a3d1-0ec101c661cf)
+
 
 
 
