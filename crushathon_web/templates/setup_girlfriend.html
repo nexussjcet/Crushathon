@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Companion Setup - Companion Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="setup-card">
+            <h1>AI Companion Setup</h1>
+            <h2>Step 2: Create Your AI Companion</h2>
+            <h4>(please wait for a while to setup ....)</h4>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <form method="POST">
+                <div class="input-group">
+                    <label for="girlfriend_name">Companion Name:</label>
+                    <input type="text" id="girlfriend_name" name="girlfriend_name" required 
+                           placeholder="What would you like to name your AI companion?">
+                </div>
+                <div class="input-group">
+                    <label for="girlfriend_description">Companion Description:</label>
+                    <textarea id="girlfriend_description" name="girlfriend_description" required 
+                              placeholder="Describe your AI companion's personality, interests, and communication style"></textarea>
+                </div>
+                <button type="submit" class="setup-btn">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

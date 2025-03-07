@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companion AI - Your Personal AI Friend</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="home-container">
+        <header class="home-header">
+            <div class="logo-container">
+                <i class="fas fa-robot logo-icon"></i>
+                <h1>Companion AI</h1>
+            </div>
+            <p class="tagline">Your Personalized AI Friend, Just a Message Away</p>
+        </header>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Create Your Perfect AI Companion</h2>
+                <p>Design, customize, and chat with an AI companion tailored specifically to your preferences and personality.</p>
+                <a href="{{ url_for('setup_api') }}" class="cta-button">
+                    <span>Get Started</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/hero-image.png') }}" alt="AI Companion Illustration">
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Fully Customizable</h3>
+                    <p>Create a unique companion with specific personality traits, interests, and communication style.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Natural Conversations</h3>
+                    <p>Enjoy fluid, dynamic conversations with emotional responses and personal connection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Visual Profiles</h3>
+                    <p>Generate a unique visual avatar for your companion based on your description.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Powered by Gemini AI</h3>
+                    <p>Utilizing Google's advanced AI technology for intelligent, contextual responses.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>API Setup</h3>
+                        <p>Enter your Gemini API key from Google AI Studio to power your companion.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Design Your Companion</h3>
+                        <p>Create your perfect AI companion by describing their personality, interests, and traits.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Tell Us About Yourself</h3>
+                        <p>Help your companion understand you better by sharing your name and interests.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Start Chatting!</h3>
+                        <p>Enjoy natural, engaging conversations with your new AI companion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>What Users Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>My AI companion feels like talking to a real friend. The personalization options are amazing!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p>-Rahul S</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>I'm impressed with how naturally my companion responds. It remembers our conversations and really feels personalized.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p>- Akshara A</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>Setting up was so easy, and my companion's personality matches exactly what I was looking for!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p>- Sam R</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to Meet Your New Companion?</h2>
+            <p>Create your personalized AI companion in minutes!</p>
+            <a href="{{ url_for('setup_api') }}" class="cta-button">
+                <span>Let's Go</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </section>
+
+        <footer class="home-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-robot logo-icon"></i>
+                    <h3>Companion AI</h3>
+                </div>
+                <p class="footer-text">Your personal AI friend for meaningful conversations.</p>
+                <p class="copyright">© 2025 Companion AI. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

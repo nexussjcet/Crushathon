@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Companion Setup - Your Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="setup-card">
+            <h1>AI Companion Setup</h1>
+            <h2>Step 3: Create Your Profile</h2>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <form method="POST">
+                <div class="input-group">
+                    <label for="user_name">Your Name:</label>
+                    <input type="text" id="user_name" name="user_name" required 
+                           placeholder="What should your companion call you?">
+                </div>
+                <div class="input-group">
+                    <label for="user_description">Your Description:</label>
+                    <textarea id="user_description" name="user_description" required 
+                              placeholder="Tell your companion about yourself, your interests, personality"></textarea>
+                </div>
+                <button type="submit" class="setup-btn">Start Chatting</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
