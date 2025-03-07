@@ -23,6 +23,8 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 ### How to Use
 Running Tamara on Your System
 Install Ollama (if not installed) – required for running the chatbot locally.
+also install mistral
+in cmd type ollama pull mistral
 Download the Tamara AI chatbot files from the repository.
 Open the terminal/command prompt and navigate to the project folder.
 Run the chatbot using:
