@@ -95,7 +95,7 @@ textblob==0.18.0
 ## Developer Profile 👤
 
 **Full Name:** Johan Joseph\
-**Education/Profession:** CSEA @ AJCE (2024-2028)\
+**Education/Profession:** CSE @ AJCE (2024-2028)\
 **Contact Details:** jithu197807@gmail.com
 
 ---
