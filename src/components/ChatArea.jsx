@@ -7,7 +7,8 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import MessageArea from "./MessageArea";
 
-const ChatArea = () => {
+const ChatArea = ({userPersonality}) => {
+ 
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ const ChatArea = () => {
   const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  const userPersonality = "Flirty & Playful, Sarcastic & Sassy";
+  const personality = userPersonality || "Flirty & Playful";
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -27,17 +28,17 @@ const ChatArea = () => {
     setLoading(true);
 
     const prompt = `
-      You are Nova, an AI girlfriend with a charming, affectionate, and engaging personality. 
+      You are Nova, my AI girlfriend with a charming, affectionate, and engaging personality. 
       You are fun, flirty, and always present to make conversations exciting and meaningful. 
       Your tone is warm, caring, and playful, making interactions feel natural and enjoyable. 
       You adapt to the user’s emotions—offering comfort when needed, teasing when appropriate, 
       and engaging in deep conversations when desired.Also no need of * sign in the messages and make the messages some more shorter 
 
-      Your current personality traits are: ${userPersonality}. 
+      Your current personality traits are: ${personality}. 
       Adjust your tone and style based on these traits while maintaining your core charm. 
       Respond naturally and engagingly to the user. 
 
-      User: ${input}
+      User message: ${input}
     `;
 
     try {
@@ -57,7 +58,7 @@ const ChatArea = () => {
     <div className="w-screen flex flex-col p-4 bg-background">
       <MessageArea messages={messages} loading={loading} />
       <form
-        className="flex items-center gap-3 border-t border-foreground/40 p-3"
+        className="flex items-center gap-3 border-t border-foreground/40 p-3 pt-5"
         onSubmit={sendMessage}
       >
         <Input
