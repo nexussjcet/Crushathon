@@ -21,17 +21,24 @@ Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where
 
 
 ### How to Use
-- If you are building a website, host it and describe how it works.
-- If you are creating a Command Line Application, describe its functionality.
-- If other, explain that too.
+Running Tamara on Your System
+Install Ollama (if not installed) – required for running the chatbot locally.
+Download the Tamara AI chatbot files from the repository.
+Open the terminal/command prompt and navigate to the project folder.
+Run the chatbot using:
+python tamara_gui.py
+
+
+Features
+Engaging and playful conversations with personality.
+Supports English & Malayalam.
+Runs locally without requiring an internet connection
 
 ### Developer Profile
 
 - Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
+i am Aman sha ,a final year btech student in MACE
+email  amansha915@gmail.com
 
 --- 
 > Note:
