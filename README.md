@@ -1,40 +1,102 @@
-# Crushathon
-![Slice 6](https://github.com/user-attachments/assets/89e3f3e2-bcfa-4483-bfea-e3e2f5439c00)
+# CrushAI 💕
 
-Welcome to **Crushathon**, an exhilarating competition at **Asthra 2025**, where innovation meets creativity! This unique challenge invites participants to build an interactive AI boyfriend or girlfriend, capable of engaging conversations and unique features.
+CrushAI is a **GenAI-based Virtual Crush Chatbot** that lets users experience fun, engaging, and emotional conversations with an AI partner. It can adapt personalities, handle mood swings, and provide human-like chat experiences.
 
-> Deadline for Submission: March 7, 2025
+## Features ✨
 
-## How to Participate
-### Step 1
-- [Fork this repository](https://github.com/nexussjcet/Crushathon/fork) to your GitHub account.
+- Chat with your AI Crush 💬
+- Personality Selection: Sweet, Sensitive, Moody, Funny
+- Mood Swings 🌈
+- Gemini AI Integration
+- Customizable Emotional Responses
+- Real-time Conversations
+- Stores Last 10 Messages for Continuity 🔄
+- Secure and Private Chats 🔒
 
-### Step 2
-- Develop an AI chatbot that can simulate conversations.
-- Enhance it with creative and innovative features of your choice.
-- Showcase your chatbot’s functionality and intelligence.
-- Describe the working of your AI partner in _How to use_ placeholder in `README.md`.
+## Tech Stack 🔥
 
-### Step 3
-- Complete your profile in the _Developer profile_ placeholder in `README.md` to get certificates.
-- Once you are done, create a pull request.
+- **Frontend:** Flutter (Material UI - Web Only)
+- **Backend:** Python Flask API
+- **AI Model:** Gemini AI
 
+## Folder Structure 📁
+```
+Ai-ChatBot/
+│
+├─ app/                   # Flutter App Folder
+│   ├─ main.dart          # Main Flutter App Code
+│   └─ ...
+│
+├─ requirements.txt       # Backend Dependencies
+└─ README.md             # Documentation
+```
 
-### How to Use
-- If you are building a website, host it and describe how it works.
-- If you are creating a Command Line Application, describe its functionality.
-- If other, explain that too.
+## Installation ⚙️
 
-### Developer Profile
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/johanjoseph29/Ai-ChatBot.git
+   cd Ai-ChatBot
+   ```
 
-- Enter your full name
-- Write a brief paragraph about your current education/profession
-- Add your projects and portfolio (optional)
-- Add your profiles on HackerRank, Exercism, LinkedIn, Mulearn, etc (optional).
-- Contact details: Email ID
+2. Install Dependencies:
+   ```bash
+   cd app
+   flutter pub get
+   ```
+   **Flutter Dependencies:**
+   ```yaml
+   http: ^0.13.6
+   google_generative_ai: ^0.3.0
+   provider: ^6.0.5
+   ```
 
---- 
-> Note:
-> This event has no prize pool. The best 3 projects will receive appreciation certificates, and all participants will receive a participation certificate.  
-> If you have any doubts, feel free to contact [Pranav Sojan](https://wa.me/918113015528).
+3. Run the app (Web Only):
+   ```bash
+   flutter run -d chrome
+   ```
+
+### Backend Setup
+
+1. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+**requirements.txt:**
+```plaintext
+Flask==3.0.0
+Flask-Cors==4.0.0
+requests==2.31.0
+google-generativeai==0.4.1
+textblob==0.18.0
+```
+
+2. Run Flask API:
+   ```bash
+   python app/api.py
+   ```
+   API URL: `http://127.0.0.1:5000/chat`
+
+## How to Use 🔥
+
+1. Install the app from the provided link.
+2. Open the app and sign up with your email ID.
+3. Choose your AI Crush personality (Sweet, Sensitive, Moody, Funny).
+4. Start chatting and experience human-like conversations.
+5. Enjoy mood swings, emotional talks, and funny replies.
+6. The app automatically stores the **last 10 messages** to maintain chat continuity.
+7. Use the settings to customize personality preferences.
+
+## App Preview 📸
+
+<img src="https://github.com/johanjoseph29/AI-ChatBot/blob/main/assets/gifmaker_me%20(2).gif" width="250" height="350"/>
+
+## Developer Profile 👤
+
+**Full Name:** Johan Joseph\
+**Education/Profession:** CSE @ AJCE (2024-2028)\
+**Contact Details:** jithu197807@gmail.com
+
+---
 
