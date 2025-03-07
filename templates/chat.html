@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with {{ bot_name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ig-primary: #ff66b2;
+            --ig-light: #ffb3d9;
+            --ig-background: #fafafa;
+            --ig-border: #dbdbdb;
+            --ig-text: #262626;
+            --ig-secondary-text: #8e8e8e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+            color: var(--ig-text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--ig-border);
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-button {
+            margin-right: 14px;
+            font-size: 24px;
+            color: var(--ig-text);
+            text-decoration: none;
+        }
+        
+        .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+        
+        .header-info {
+            flex: 1;
+        }
+        
+        .header-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .header-status {
+            font-size: 12px;
+            color: var(--ig-secondary-text);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .header-icon {
+            font-size: 24px;
+            color: var(--ig-text);
+        }
+        
+        /* Chat Container */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            overflow: hidden;
+        }
+        
+        /* Messages Area */
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 16px;
+            background-color: var(--ig-background);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Date Divider */
+        .date-divider {
+            text-align: center;
+            margin: 16px 0;
+            position: relative;
+        }
+        
+        .date-divider span {
+            background-color: var(--ig-background);
+            padding: 0 10px;
+            font-size: 12px;
+            color: var(--ig-secondary-text);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .date-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background-color: var(--ig-border);
+            z-index: 0;
+        }
+        
+        /* Message Styles */
+        .message {
+            max-width: 70%;
+            margin-bottom: 8px;
+            padding: 8px 16px;
+            border-radius: 22px;
+            font-size: 14px;
+            line-height: 1.4;
+            position: relative;
+            word-wrap: break-word;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--ig-primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background-color: #f1f1f1;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message-time {
+            font-size: 10px;
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+        
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background-color: #f1f1f1;
+            padding: 12px 16px;
+            border-radius: 22px;
+            border-bottom-left-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .typing-dots {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #999;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+        
+        /* Input Area */
+        .input-area {
+            padding: 10px 16px;
+            background-color: white;
+            border-top: 1px solid var(--ig-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .emoji-button {
+            color: var(--ig-secondary-text);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .input-wrapper {
+            flex: 1;
+            background-color: var(--ig-background);
+            border-radius: 22px;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--ig-border);
+        }
+        
+        .message-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 10px 0;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            min-height: 20px;
+            max-height: 80px;
+            resize: none;
+        }
+        
+        .send-button {
+            background: none;
+            border: none;
+            color: var(--ig-primary);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 0 4px;
+            cursor: pointer;
+        }
+        
+        .send-button:disabled {
+            color: var(--ig-secondary-text);
+            opacity: 0.6;
+        }
+        
+        /* Menu */
+        .menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            padding: 20px;
+        }
+        
+        .menu.active {
+            transform: translateY(0);
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            display: none;
+        }
+        
+        .menu-overlay.active {
+            display: block;
+        }
+        
+        .menu-header {
+            text-align: center;
+            padding-bottom: 20px;
+            position: relative;
+        }
+        
+        .menu-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .menu-handle {
+            width: 40px;
+            height: 4px;
+            background-color: var(--ig-border);
+            border-radius: 2px;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .menu-option {
+            padding: 14px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--ig-border);
+        }
+        
+        .menu-option:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-icon {
+            margin-right: 12px;
+            font-size: 24px;
+            color: var(--ig-text);
+        }
+        
+        .menu-text {
+            font-size: 16px;
+        }
+        
+        .menu-danger {
+            color: #ed4956;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('customize') }}" class="back-button">←</a>
+        <img class="profile-pic" src="{{ bot_dp }}" alt="{{ bot_name }}">
+        <div class="header-info">
+            <div class="header-name">{{ bot_name }}</div>
+            <div class="header-status">{{ bot_traits }}</div>
+        </div>
+        <div class="header-actions">
+            <div class="header-icon" onclick="toggleMenu()">⋮</div>
+        </div>
+    </div>
+    
+    <div class="chat-container">
+        <div class="messages-container" id="messagesContainer">
+            <div class="date-divider">
+                <span>Today</span>
+            </div>
+            
+            {% if chat_history|length == 0 %}
+                <div class="message bot-message">
+                    Hey there! I'm {{ bot_name }}. What's on your mind? 😊
+                    <div class="message-time">Just now</div>
+                </div>
+            {% else %}
+                {% for message in chat_history %}
+                    <div class="message user-message">
+                        {{ message.user }}
+                        <div class="message-time">{{ loop.index0 * 2 + 1 }} min ago</div>
+                    </div>
+                    <div class="message bot-message">
+                        {{ message.bot }}
+                        <div class="message-time">{{ loop.index0 * 2 }} min ago</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <button class="emoji-button">😊</button>
+            <div class="input-wrapper">
+                <textarea 
+                    class="message-input" 
+                    id="messageInput" 
+                    placeholder="Message..." 
+                    rows="1"
+                    oninput="resizeTextarea(this)"
+                ></textarea>
+            </div>
+            <button class="send-button" id="sendButton" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu" id="menu">
+        <div class="menu-header">
+            <div class="menu-handle"></div>
+            <div class="menu-title">Chat options</div>
+        </div>
+        <a href="{{ url_for('clear_chat') }}" class="menu-option">
+            <div class="menu-icon">🔄</div>
+            <div class="menu-text">Clear chat history</div>
+        </a>
+        <a href="{{ url_for('customize') }}" class="menu-option">
+            <div class="menu-icon">👤</div>
+            <div class="menu-text">Change crush</div>
+        </a>
+        <div class="menu-option" onclick="toggleMenu()">
+            <div class="menu-icon">❌</div>
+            <div class="menu-text">Cancel</div>
+        </div>
+    </div>
+    
+    <script>
+        // Get current formatted time
+        function getCurrentTime() {
+            return "Just now";
+        }
+        
+        // Resize textarea as user types
+        function resizeTextarea(textarea) {
+            textarea.style.height = '20px';
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+            
+            // Enable/disable send button based on content
+            document.getElementById('sendButton').disabled = textarea.value.trim() === '';
+        }
+        
+        // Toggle menu visibility
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+            document.getElementById('menuOverlay').classList.toggle('active');
+        }
+        
+        // Send message function
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const userMessage = messageInput.value.trim();
+            
+            if (!userMessage) return;
+            
+            // Reset textarea
+            messageInput.value = '';
+            messageInput.style.height = '20px';
+            document.getElementById('sendButton').disabled = true;
+            
+            // Add user message to chat
+            const messagesContainer = document.getElementById('messagesContainer');
+            const userMessageElement = document.createElement('div');
+            userMessageElement.className = 'message user-message';
+            userMessageElement.innerHTML = `
+                ${userMessage}
+                <div class="message-time">${getCurrentTime()}</div>
+            `;
+            messagesContainer.appendChild(userMessageElement);
+            
+            // Show typing indicator
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'flex';
+            
+            // Scroll to bottom
+            scrollToBottom();
+            
+            // Send to server
+            fetch("{{ url_for('send_message') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message: userMessage }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide typing indicator
+                typingIndicator.style.display = 'none';
+                
+                // Add bot response
+                const botMessageElement = document.createElement('div');
+                botMessageElement.className = 'message bot-message';
+                botMessageElement.innerHTML = `
+                    ${data.bot_response}
+                    <div class="message-time">${getCurrentTime()}</div>
+                `;
+                messagesContainer.appendChild(botMessageElement);
+                
+                scrollToBottom();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                
+                // Hide typing indicator
+                typingIndicator.style.display = 'none';
+                
+                // Show error message
+                const errorMessageElement = document.createElement('div');
+                errorMessageElement.className = 'message bot-message';
+                errorMessageElement.innerHTML = `
+                    Sorry, I couldn't respond right now. Please try again.
+                    <div class="message-time">${getCurrentTime()}</div>
+                `;
+                messagesContainer.appendChild(errorMessageElement);
+                
+                scrollToBottom();
+            });
+        }
+        
+        // Scroll to bottom of messages
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('messagesContainer');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial button state
+            document.getElementById('sendButton').disabled = true;
+            
+            // Enable Enter key to send
+            document.getElementById('messageInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    if (document.getElementById('messageInput').value.trim() !== '') {
+                        sendMessage();
+                    }
+                }
+            });
+            
+            // Initial scroll to bottom
+            scrollToBottom();
+        });
+    </script>
+</body>
+</html>

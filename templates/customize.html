@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Your Crush</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            background-image: linear-gradient(135deg, #ffe6f2 0%, #ffd6e7 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 480px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 102, 178, 0.2);
+        }
+        h2 {
+            color: #ff66b2;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff66b2;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #ffb3d9;
+            font-size: 16px;
+            transition: border 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        input:focus, select:focus {
+            border-color: #ff66b2;
+            outline: none;
+        }
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-input-label {
+            display: block;
+            padding: 12px;
+            background: #ffb3d9;
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .file-input-label:hover {
+            background: #ff99cc;
+        }
+        input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .feature-box {
+            display: block;
+            background: #ff66b2;
+            color: white;
+            padding: 15px;
+            margin: 30px 0 10px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(255, 102, 178, 0.3);
+        }
+        .feature-box:hover {
+            background: #ff3399;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 102, 178, 0.4);
+        }
+        .preview-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 10px auto;
+            display: block;
+            border: 3px solid #ffb3d9;
+        }
+        #preview {
+            display: none;
+            margin-top: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #ff66b2;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Customize Your Crush</h2>
+        <form action="{{ url_for('customize') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="bot_name">Name:</label>
+                <input type="text" id="bot_name" name="bot_name" placeholder="What's your crush's name?" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="bot_traits">Personality Traits:</label>
+                <input type="text" id="bot_traits" name="bot_traits" placeholder="E.g., Flirty, Shy, Caring, Funny" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="bot_gender">Gender:</label>
+                <select id="bot_gender" name="bot_gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Non-binary">Non-binary</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Profile Picture:</label>
+                <div class="file-input-container">
+                    <label for="bot_dp" class="file-input-label">Choose Image</label>
+                    <input type="file" id="bot_dp" name="bot_dp" accept="image/*" onchange="previewImage()">
+                </div>
+                <div id="preview">
+                    <img id="preview-img" class="preview-img" src="#" alt="Preview">
+                </div>
+            </div>
+            
+            <button type="submit" class="feature-box">Start Chatting 💬</button>
+        </form>
+        <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+    </div>
+
+    <script>
+        function previewImage() {
+            const preview = document.getElementById('preview');
+            const file = document.getElementById('bot_dp').files[0];
+            const reader = new FileReader();
+            
+            reader.onloadend = function() {
+                document.getElementById('preview-img').src = reader.result;
+                preview.style.display = 'block';
+            }
+            
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
