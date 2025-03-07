@@ -13,8 +13,8 @@ Welcome to **MyCrush**, an AI-powered chatbot that mimics your crush's personali
 - **💬 Persistent Chat History** – Conversations are saved even after refreshing or reopening the app.
 - **📱 Mobile & Desktop Friendly** –  Fully responsive UI for seamless chatting on any device.
 - **🔄 Change Crush Anytime** – Easily reset or clear the chatbot’s personality whenever you like.
-- **🧠 Smart Memory ** – The bot remembers past conversations and responds accordingly.
-- **🚹 Gender-Based Responses ** – Adjusts conversation style based on your crush’s gender.
+- **🧠 Smart Memory** – The bot remembers past conversations and responds accordingly.
+- **🚹 Gender-Based Responses** – Adjusts conversation style based on your crush’s gender.
 
 ## 📝 How to Use
 1. **Start Here** – Visit the [Live Site](https://mycrush-ag8u.onrender.com/) 🌐
