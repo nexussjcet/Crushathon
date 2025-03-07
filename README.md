@@ -51,6 +51,7 @@ This project is an **interactive AI chatbot** built for the Crushathon challenge
 **Full Name:** Devanath D R
 
 **Current Education/Profession:** B.Tech, 3rd Year - Computer Science Student
+
 **College:** College of Engineering Karunagappally
 **Profiles:**
 * [LinkedIn](https://www.linkedin.com/in/devanath-dr-0a9996262/) <!-- Replace with your actual LinkedIn URL -->
