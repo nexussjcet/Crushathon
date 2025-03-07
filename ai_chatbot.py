@@ -3,7 +3,7 @@ import pyttsx3
 import speech_recognition as sr
 
 # ✅ Set up OpenAI client with your API key
-client = openai.OpenAI(api_key="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")  # 🔴 Replace this
+client = openai.OpenAI(api_key="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  # 🔴 Replace this
 
 def speak(text):
     """Converts text to speech."""
