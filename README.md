@@ -1,3 +1,21 @@
+# 👨‍💻 Developer Profile
+
+I am **Joe George**, a Computer Science Engineering student at **St. Joseph's College of Engineering and Technology**.
+
+- **LinkedIn**: [linkedin.com/in/joegeorge022](https://www.linkedin.com/in/joegeorge022/)
+- **GitHub**: [github.com/joegeorge022](https://github.com/joegeorge022/)
+
+- **Email**: [joegeorge2028@cs.sjcetpalai.ac.in](mailto:joegeorge2028@cs.sjcetpalai.ac.in)
+
+---
+
+
+
+
+
+
+
+
 # Ada - Cyberpunk AI Girlfriend
 
 Ada is a cyberpunk AI girlfriend powered by LLaMA 3 70B. Ada provides a real-time, ultra-responsive, immersive conversations in a high-tech, dystopian-inspired interface. Ada adapts effortlessly for engaging discussions or immersive roleplay. Chat with Ada today✨!
