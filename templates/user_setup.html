@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile | MyCrush</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='robot.jpg') }}" type="image/jpeg">
+    <style>
+        :root {
+            --primary-color: #ff66b2;
+            --primary-light: #ffb3d9;
+            --bg-gradient-1: #ffe6f2;
+            --bg-gradient-2: #ffd6e7;
+            --container-bg: white;
+            --text-color: #333;
+            --text-secondary: #666;
+            --shadow-color: rgba(255, 102, 178, 0.2);
+            --button-shadow: rgba(255, 102, 178, 0.3);
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #ff66b2;
+            --primary-light: #cc5290;
+            --bg-gradient-1: #1a1a2e;
+            --bg-gradient-2: #16213e;
+            --container-bg: #272640;
+            --text-color: #f1f1f1;
+            --text-secondary: #cccccc;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --button-shadow: rgba(255, 102, 178, 0.5);
+        }
+        
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            text-align: center;
+            background-color: var(--bg-gradient-1);
+            background-image: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 480px;
+            margin: auto;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            position: relative;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid var(--primary-light);
+            font-size: 16px;
+            transition: border 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .feature-box {
+            display: block;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            margin: 30px 0 10px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 5px 15px var(--button-shadow);
+        }
+        
+        .feature-box:hover {
+            background: #ff3399;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--button-shadow);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+        <h2>Tell Us About Yourself</h2>
+        <form action="{{ url_for('user_setup') }}" method="POST">
+            <div class="form-group">
+                <label for="user_name">Your Name:</label>
+                <input type="text" id="user_name" name="user_name" placeholder="What's your name?" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="user_nickname">Nickname (optional):</label>
+                <input type="text" id="user_nickname" name="user_nickname" placeholder="What would you like to be called?">
+            </div>
+            
+            <div class="form-group">
+                <label for="user_gender">Your Gender:</label>
+                <select id="user_gender" name="user_gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Non-binary">Non-binary</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="feature-box">Continue to Crush Setup ❤️</button>
+        </form>
+        <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+    </div>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
