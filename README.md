@@ -40,7 +40,7 @@ Ada is a cyberpunk AI girlfriend powered by LLaMA 3 70B. Ada provides a real-tim
 - **Fully optimized** for both desktop and mobile.
 - **Adaptive layout** that scales smoothly across devices.
 
-## 🔗 Access Ada
+## 🔗 Use Ada
 🔹 **Experience Ada now:** [Ada](https://ada-gf.pages.dev/)
 
 ## 📜 License
